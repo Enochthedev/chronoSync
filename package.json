@@ -1,0 +1,32 @@
+{
+  "name": "chronosync",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node run.ts",
+    "dev": "ts-node run.ts",
+    "dev:telegram": "ts-node bots/telegram/bot.ts",
+    "dev:discord": "ts-node bots/discord/bot.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@prisma/client": "^6.5.0",
+    "chalk": "^5.4.1",
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.4.7",
+    "node-fetch": "^3.3.2",
+    "node-telegram-bot-api": "^0.66.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.11",
+    "@types/node-fetch": "^2.6.12",
+    "@types/node-telegram-bot-api": "^0.64.8",
+    "nodemon": "^3.1.9",
+    "prisma": "^6.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}

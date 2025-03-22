@@ -1,0 +1,52 @@
+.env
+# Node.js
+node_modules/
+dist/
+build/
+.env
+.env.*
+.nyc_output/
+coverage/
+lib-cov/
+*.log
+*.tsbuildinfo
+
+# TypeScript
+*.tsbuildinfo
+
+# Prisma
+.prisma/
+dev.db
+dev.db-journal
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+*.pid
+
+# AI / Ollama
+ollama/
+*.bin
+ollama_models/
+cache/
+
+# Yarn / pnpm / npm
+.yarn/
+.pnp.*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Optional: Remove this if you want Prisma Studio saved state
+.prisma/studio/
+
+# Optional: remove any local run script outputs
+run.log
