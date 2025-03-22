@@ -112,7 +112,8 @@
   },
   "include": [
     "bots",
-    "core"
+    "core",
+    "src",
   ],
   "exclude": [
     "node_modules",
