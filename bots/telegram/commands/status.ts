@@ -1,5 +1,5 @@
 import TelegramBot from 'node-telegram-bot-api';
-import { getBotStatus } from '../../../core/utils/statusChecker';
+import { getBotStatus } from '../../../core/utils/statusChecker.js';
 
 export const statusCommand = {
   name: 'status',

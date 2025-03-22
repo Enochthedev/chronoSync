@@ -1,7 +1,7 @@
-import { startCommand } from './start';
-import { helpCommand } from './help';
-import { statusCommand } from './status';
-import { askCommand } from './ask';
+import { startCommand } from './start.js';
+import { helpCommand } from './help.js';
+import { statusCommand } from './status.js';
+import { askCommand } from './ask.js';
 
 // import more commands here...
 

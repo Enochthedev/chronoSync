@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
-import { askOllama } from '../ai/ollama.service';
-import { learnFrom } from '../ai/trainer';
+import { askOllama } from '../ai/ollama.service.js';
+import { learnFrom } from '../ai/trainer.js';
 
 export async function smartBrowseAndSummarize(prompt: string): Promise<string> {
   try {
@@ -35,6 +35,7 @@ export async function smartBrowseAndSummarize(prompt: string): Promise<string> {
       content: summary,
       query: prompt,
       source: 'browsing',
+      namespace: 'shared'
     });
 
     return summary;

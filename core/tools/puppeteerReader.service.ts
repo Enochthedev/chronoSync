@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import { askOllama } from '../ai/ollama.service';
+import { askOllama } from '../ai/ollama.service.js';
 
 export async function smartBrowseAndSummarize(query: string): Promise<string> {
   const browser = await puppeteer.launch({ headless: true });

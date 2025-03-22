@@ -1,6 +1,6 @@
-import { logger } from '../../utils/logger';
+import { logger } from '../../utils/logger.js';
 import { Client, Message } from 'discord.js';
-import { askWithMemory } from '../../../../core/ai';
+import { askWithMemory } from '../../../../core/ai/index.js';
 
 export const askCommand = {
   name: 'ask',

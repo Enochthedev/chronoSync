@@ -1,7 +1,7 @@
-import { askOllama } from './ollama.service';
-import { memoryStore } from './memory.store';
-import { learnFrom } from './trainer';
-import { extractNameFromMessage } from '../utils/detectors';
+import { askOllama } from './ollama.service.js';
+import { memoryStore } from './memory.store.js';
+import { learnFrom } from './trainer.js';
+import { extractNameFromMessage } from '../utils/detectors.js';
 
 export async function askWithMemory(prompt: string, userId: string, isPrivate = false): Promise<string> {
   const namespace = isPrivate ? `private:${userId}` : 'shared';

@@ -1,5 +1,5 @@
 import { Client, Message } from 'discord.js';
-import { listAvailableModels } from '../../../../core/ai/ollama.service';
+import { listAvailableModels } from '../../../../core/ai/ollama.service.js';
 
 export const modelsCommand = {
   name: 'models',

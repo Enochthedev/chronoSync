@@ -1,5 +1,5 @@
-import { helloProcessor } from './hello';
-import { echoProcessor } from './echo';
+import { helloProcessor } from './hello.js';
+import { echoProcessor } from './echo.js';
 
 export const messageProcessors = [
   helloProcessor,

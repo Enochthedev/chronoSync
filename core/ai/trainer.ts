@@ -1,4 +1,4 @@
-import { memoryStore } from './memory.store';
+import { memoryStore } from './memory.store.js';
 
 interface LearnInput {
   content: string;

@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { listAvailableModels } from './ollama.service';
+import { listAvailableModels } from './ollama.service.js';
 
 export async function embedText(text: string): Promise<number[]> {
   try {

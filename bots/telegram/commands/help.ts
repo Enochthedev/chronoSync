@@ -1,5 +1,5 @@
 import TelegramBot from 'node-telegram-bot-api';
-import { commandRegistry } from './index';
+import { commandRegistry } from './index.js';
 
 export const helpCommand = {
   name: 'help',

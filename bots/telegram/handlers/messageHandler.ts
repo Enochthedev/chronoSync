@@ -1,9 +1,9 @@
 import TelegramBot from 'node-telegram-bot-api';
-import { isAuthorizedUser } from '../middlewares/auth';
-import { logger } from '../utils/logger';
-import { messageProcessors } from '../messages';
-import { databaseService } from '../../../core/services/database.service';
-import { askWithMemory } from '../../../core/ai';
+import { isAuthorizedUser } from '../middlewares/auth.js';
+import { logger } from '../utils/logger.js';
+import { messageProcessors } from '../messages/index.js';
+import { databaseService } from '../../../core/services/database.service.js';
+import { askWithMemory } from '../../../core/ai/index.js';
 
 export async function handleMessage(bot: TelegramBot, msg: TelegramBot.Message) {
   const userId = String(msg.from?.id);

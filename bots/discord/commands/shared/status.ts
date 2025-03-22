@@ -1,6 +1,6 @@
 import { Client, Message } from 'discord.js';
-import { getBotStatus } from '../../../../core/utils/statusChecker';
-import { logger } from '../../utils/logger';
+import { getBotStatus } from '../../../../core/utils/statusChecker.js';
+import { logger } from '../../utils/logger.js';
 
 export const statusCommand = {
   name: 'status',

@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import { askOllama } from '../ai/ollama.service';
-import { config } from '../config';
+import { askOllama } from '../ai/ollama.service.js';
+import { config } from '../config/index.js';
 
 const prisma = new PrismaClient();
 const startTime = Date.now();

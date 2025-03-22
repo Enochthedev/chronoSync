@@ -1,9 +1,9 @@
 import { Client, Message } from 'discord.js';
-import { isAuthorizedUser } from '../middlewares/auth';
-import { logger } from '../utils/logger';
-import { commandRegistry } from '../commands';
-import { databaseService } from '../../../core/services/database.service';
-import { askWithMemory } from '../../../core/ai'; // update this import
+import { isAuthorizedUser } from '../middlewares/auth.js';
+import { logger } from '../utils/logger.js';
+import { commandRegistry } from '../commands/index.js';
+import { databaseService } from '../../../core/services/database.service.js';
+import { askWithMemory } from '../../../core/ai/index.js'; // update this import
 
 export async function handleMessage(client: Client, message: Message) {
   if (message.author.bot) return;

@@ -1,7 +1,7 @@
 import { Client, GatewayIntentBits, Events } from 'discord.js';
-import { config } from '../../core/config'
-import { logger } from './utils/logger';
-import { handleMessage } from './handlers/messageHandler';
+import { config } from '../../core/config/index.js'
+import { logger } from './utils/logger.js';
+import { handleMessage } from './handlers/messageHandler.js';
 
 const client = new Client({
   intents: [

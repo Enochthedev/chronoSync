@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { embedText } from './embedder';
+import { embedText } from './embedder.js';
 
 const memoryBasePath = path.resolve('core/data/vector-store');
 

@@ -1,4 +1,4 @@
-import { askOllama } from '../ai/ollama.service';
+import { askOllama } from '../ai/ollama.service.js';
 
 export async function handleAskCommand(
   prompt: string,

@@ -1,5 +1,5 @@
 import TelegramBot from 'node-telegram-bot-api';
-import { askWithMemory } from '../../../core/ai';
+import { askWithMemory } from '../../../core/ai/index.js';
 
 export const askCommand = {
   name: 'ask',

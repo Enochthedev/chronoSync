@@ -1,5 +1,5 @@
 import { Message } from 'discord.js';
-import { config } from '../../../core/config';
+import { config } from '../../../core/config/index.js';
 
 export function isAuthorizedUser(message: Message): boolean {
   const allowed = config.discord.authorizedUsers;

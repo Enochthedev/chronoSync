@@ -1,10 +1,9 @@
 import TelegramBot from 'node-telegram-bot-api';
-import { config } from '../../core/config';
-import { handleCommand } from './handlers/commandHandler';
-import { handleMessage } from './handlers/messageHandler';
-import { logger } from './utils/logger';
-import { databaseService } from '../../core/services/database.service';
-;
+import { config } from '../../core/config/index.js';
+import { handleCommand } from './handlers/commandHandler.js';
+import { handleMessage } from './handlers/messageHandler.js';
+import { logger } from './utils/logger.js';
+
 const bot = new TelegramBot(config.telegram.token, { polling: true });
 
 bot.on('message', async (msg) => {

@@ -1,5 +1,5 @@
 import { Client, Message } from 'discord.js';
-import { puppeteerBrowse } from '../../../../core/tools/puppeteerBrowser.service';
+import { puppeteerBrowse } from '../../../../core/tools/puppeteerBrowser.service.js';
 
 export const browseCommand = {
   name: 'browse',

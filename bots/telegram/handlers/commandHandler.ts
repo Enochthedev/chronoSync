@@ -1,7 +1,7 @@
 import TelegramBot from 'node-telegram-bot-api';
-import { isAuthorizedUser } from '../middlewares/auth';
-import { logger } from '../utils/logger';
-import { commandRegistry } from '../commands';
+import { isAuthorizedUser } from '../middlewares/auth.js';
+import { logger } from '../utils/logger.js';
+import { commandRegistry } from '../commands/index.js';
 
 export async function handleCommand(bot: TelegramBot, msg: TelegramBot.Message) {
   const chatId = msg.chat.id;

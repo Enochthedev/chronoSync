@@ -1,12 +1,12 @@
-import { pingCommand } from './shared/ping';
-import { helpCommand } from './shared/help';
-import { statusCommand } from './shared/status';
-import { serverInfoCommand } from './discordOnly/serverInfo';
-import { avatarCommand } from './discordOnly/avatar';
-import { askCommand } from './shared/ask';
-import { modelsCommand } from './shared/models';
-import { browseCommand } from './shared/browse';
-import { smartBrowseCommand } from './shared/smartbrowse';
+import { pingCommand } from './shared/ping.js';
+import { helpCommand } from './shared/help.js';
+import { statusCommand } from './shared/status.js';
+import { serverInfoCommand } from './discordOnly/serverInfo.js';
+import { avatarCommand } from './discordOnly/avatar.js';
+import { askCommand } from './shared/ask.js';
+import { modelsCommand } from './shared/models.js';
+import { browseCommand } from './shared/browse.js';
+import { smartBrowseCommand } from './shared/smartbrowse.js';
 
 export const commandRegistry = [
     pingCommand,

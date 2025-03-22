@@ -1,5 +1,5 @@
 import { Client, Message } from 'discord.js';
-import { smartBrowseAndSummarize } from '../../../../core/tools/puppeteerReader.service';
+import { smartBrowseAndSummarize } from '../../../../core/tools/puppeteerReader.service.js';
 
 export const smartBrowseCommand = {
   name: 'smartbrowse',
