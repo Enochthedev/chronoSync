@@ -5,6 +5,8 @@ import { serverInfoCommand } from './discordOnly/serverInfo';
 import { avatarCommand } from './discordOnly/avatar';
 import { askCommand } from './shared/ask';
 import { modelsCommand } from './shared/models';
+import { browseCommand } from './shared/browse';
+import { smartBrowseCommand } from './shared/smartbrowse';
 
 export const commandRegistry = [
     pingCommand,
@@ -14,4 +16,6 @@ export const commandRegistry = [
     avatarCommand,
     askCommand,
     modelsCommand,
+    browseCommand,
+    smartBrowseCommand,
 ];
