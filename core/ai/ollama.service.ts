@@ -6,7 +6,7 @@ const DEFAULT_MODEL = 'llama3';
 
 export async function isOllamaRunning(): Promise<boolean> {
   try {
-    const res = await fetch(`${OLLAMA_URL}/api/status`);
+    const res = await fetch('http://host.docker.internal:11434');
     return res.ok;
   } catch {
     return false;
@@ -15,10 +15,7 @@ export async function isOllamaRunning(): Promise<boolean> {
 
 export function startOllamaServe(): void {
   console.log('🧠 Starting Ollama server...');
-  spawn('ollama', ['serve'], {
-    detached: true,
-    stdio: 'ignore',
-  }).unref();
+  
 }
 
 export async function listAvailableModels(): Promise<string[]> {

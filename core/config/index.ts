@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { resolve } from 'path';
 import fs from 'fs';
 
+
 // === Environment Detection ===
 const envFile =
   process.env.NODE_ENV === 'production'
@@ -37,5 +38,5 @@ export const config = {
   },
 
   // Shared DB (Optional)
-  databaseUrl: process.env.DATABASE_URL || 'file:./default.db',
+  databaseUrl: process.env.DATABASE_URL || '',
 };
