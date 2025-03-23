@@ -1,12 +1,12 @@
 import fetch from 'node-fetch';
-import { execSync, spawn } from 'child_process';
+import { spawn } from 'child_process';
 
-const OLLAMA_URL = 'http://localhost:11434';
-const DEFAULT_MODEL = 'llama3';
+const OLLAMA_HOST = process.env.OLLAMA_HOST || 'http://localhost:11434';
+const PREFERRED_MODELS = ['gemma:2b', 'smolLM2:1.7b'];
 
 export async function isOllamaRunning(): Promise<boolean> {
   try {
-    const res = await fetch('http://host.docker.internal:11434');
+    const res = await fetch(`${OLLAMA_HOST}`);
     return res.ok;
   } catch {
     return false;
@@ -15,15 +15,23 @@ export async function isOllamaRunning(): Promise<boolean> {
 
 export function startOllamaServe(): void {
   console.log('🧠 Starting Ollama server...');
-  
+  try {
+    const child = spawn('ollama', ['serve']);
+    child.stdout.on('data', data => console.log(`[ollama] ${data}`));
+    child.stderr.on('data', data => console.error(`[ollama err] ${data}`));
+    child.on('close', code => console.log(`🧠 Ollama exited with code ${code}`));
+  } catch (err) {
+    console.error('❌ Failed to start Ollama server:', err);
+  }
 }
 
 export async function listAvailableModels(): Promise<string[]> {
   try {
-    const res = await fetch(`${OLLAMA_URL}/api/tags`);
+    const res = await fetch(`${OLLAMA_HOST}/api/tags`);
     const json = (await res.json()) as { models: { name: string }[] };
-    return json.models.map((model) => model.name);
-  } catch {
+    return json.models.map(model => model.name);
+  } catch (err) {
+    console.error('❌ Failed to fetch Ollama models:', err);
     return [];
   }
 }
@@ -33,20 +41,35 @@ export async function askOllama(prompt: string): Promise<string> {
   if (!running) startOllamaServe();
 
   const models = await listAvailableModels();
-  const model = models.includes(DEFAULT_MODEL) ? DEFAULT_MODEL : models[0];
 
-  if (!model) return '❌ No Ollama models found. Please run `ollama pull llama3`.';
+  const ignored = ['nomic-embed-text', 'mxbai-embed-large', 'all-minilm', 'gguf'];
+  const usable = models.filter(
+    model => !ignored.some(ignore => model.includes(ignore))
+  );
 
-  const res = await fetch(`${OLLAMA_URL}/api/generate`, {
+  const selected =
+    PREFERRED_MODELS.find(m => usable.includes(m)) || usable[0];
+
+  if (!selected) return '❌ No compatible Ollama models found for generation.';
+
+  const finalPrompt = prompt.trim();
+  console.log(`🧠 Sending prompt to Ollama model "${selected}"...`);
+  console.log('🧠 Final Prompt Sent to Ollama:\n', finalPrompt);
+
+  const res = await fetch(`${OLLAMA_HOST}/api/generate`, {
     method: 'POST',
-    body: JSON.stringify({
-      model,
-      prompt,
-      stream: false,
-    }),
+    body: JSON.stringify({ model: selected, prompt: finalPrompt, stream: false }),
     headers: { 'Content-Type': 'application/json' },
   });
 
-  const data = (await res.json()) as { response?: string };
-  return data.response || '[No response from AI]';
+  try {
+    const data = (await res.json()) as { response?: string };
+    if (!data.response) {
+      console.warn('⚠️ Ollama responded without a `response` field:', data);
+    }
+    return data.response || '[No response from Ollama]';
+  } catch (err) {
+    console.error('❌ Failed to parse Ollama response:', err);
+    return '';
+  }
 }

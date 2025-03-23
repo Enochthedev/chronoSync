@@ -1,19 +1,36 @@
 import fetch from 'node-fetch';
 import { listAvailableModels } from './ollama.service.js';
 
+const DEFAULT_EMBED_MODELS = [
+  'nomic-embed-text',
+  'mxbai-embed-large',
+  'all-minilm',
+  'tinyllama',
+];
+
+// Support remote Ollama host
+const OLLAMA_HOST = process.env.OLLAMA_HOST || 'http://localhost:11434';
+
 export async function embedText(text: string): Promise<number[]> {
   try {
-    // Get list of available models
     const models = await listAvailableModels();
+    console.log('📦 Available Ollama models:', models);
 
-    // Prefer models known to support embeddings (avoid codellama, gguf, etc.)
-    const model = models.find(m =>
-      !m.includes('codellama') && !m.includes('gguf') && !m.includes('llama3')
-    );
+    const preferredModel = process.env.EMBED_MODEL;
+    let model: string | undefined;
+
+    if (preferredModel && models.includes(preferredModel)) {
+      model = preferredModel;
+      console.log(`✅ Using embedding model from .env: ${model}`);
+    } else {
+      model = models.find(m =>
+        DEFAULT_EMBED_MODELS.some(known => m.includes(known))
+      );
+    }
 
     if (!model) throw new Error('❌ No compatible embedding model found.');
 
-    const response = await fetch('http://localhost:11434/api/embeddings', {
+    const response = await fetch(`${OLLAMA_HOST}/api/embeddings`, {
       method: 'POST',
       body: JSON.stringify({ model, prompt: text }),
       headers: { 'Content-Type': 'application/json' },

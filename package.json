@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "prisma generate",
     "start": "node dist/index.js",
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "tsx watch index.ts",
     "dev:telegram": "ts-node bots/telegram/bot.ts",
     "dev:discord": "ts-node bots/discord/bot.ts",
     "build": "tsc"
@@ -35,6 +35,7 @@
     "prisma": "^6.5.0",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   }
 }
