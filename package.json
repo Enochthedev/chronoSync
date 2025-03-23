@@ -4,8 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "postinstall": "prisma generate",
     "start": "node dist/index.js",
-    "dev": "ts-node run.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "dev:telegram": "ts-node bots/telegram/bot.ts",
     "dev:discord": "ts-node bots/discord/bot.ts",
     "build": "tsc"
@@ -33,6 +34,7 @@
     "nodemon": "^3.1.9",
     "prisma": "^6.5.0",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.2"
   }
 }
