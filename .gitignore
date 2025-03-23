@@ -5,6 +5,7 @@ dist/
 build/
 .env
 .env.*
+!.env.example
 .nyc_output/
 coverage/
 lib-cov/
