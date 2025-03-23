@@ -1,0 +1,34 @@
+name: Auto Release Tag
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tag_version:
+    if: contains(github.event.head_commit.message, '[release]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Get version from package.json
+        id: package_version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "VERSION=v$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release Tag
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.package_version.outputs.VERSION }}
+          name: Release ${{ steps.package_version.outputs.VERSION }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
